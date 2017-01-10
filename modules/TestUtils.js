@@ -28,6 +28,12 @@ export const isArray = (object) =>
   Array.isArray(object)
 
 /**
+ * Returns true if the given object is a set.
+ */
+export const isSet = (object) =>
+  object instanceof Set
+
+/**
  * Returns true if the given object is an object.
  */
 export const isObject = (object) =>
@@ -87,6 +93,14 @@ export const functionThrows = (fn, context, args, value) => {
  */
 export const arrayContains = (array, value, compareValues) =>
   array.some(item => compareValues(item, value) !== false)
+
+/**
+ * Returns true if the given array contains the value, false
+ * otherwise. The compareValues function must return false to
+ * indicate a non-match.
+ */
+export const setContains = (set, value, compareValues) =>
+  arrayContains([ ...set ], value, compareValues)
 
 const ownEnumerableKeys = (object) => {
   if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {

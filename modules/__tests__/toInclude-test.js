@@ -1,10 +1,10 @@
 import expect from '../index'
 
 describe('toInclude', () => {
-  it('requires the actual value to be an array, object, or a string', () => {
+  it('requires the actual value to be an array, set, object, or a string', () => {
     expect(() => {
       expect(1).toInclude(2)
-    }).toThrow(/must be an array, object, or a string/)
+    }).toThrow(/must be an array, set, object, or a string/)
   })
 
   it('does not throw when an array contains an expected integer', () => {
@@ -19,7 +19,19 @@ describe('toInclude', () => {
       expect([ { a: 1 }, { c: 2 } ]).toInclude({ c: 2 })
     }).toNotThrow()
   })
-
+  
+  it('does not throw when a set contains an expected integer', () => {
+    expect(() => {
+      expect(new Set([ 1, 2, 3 ])).toInclude(2)
+    }).toNotThrow()
+  })
+  
+  it('does not throw when a set contains an expected object', () => {
+    expect(() => {
+      expect(new Set([ { a: 1 }, { c: 2} ])).toInclude({ c: 2 })
+    }).toNotThrow()
+  })
+  
   it('does not throw when an object contains an expected object', () => {
     expect(() => {
       expect({ a: 1, b: 2, c: 3 }).toInclude({ b: 2 })
@@ -115,6 +127,18 @@ describe('toInclude', () => {
   it('throws when an array does not contain an expected object', () => {
     expect(() => {
       expect([ { a: 1 }, { c: 2 } ]).toInclude({ a: 2 })
+    }).toThrow(/to include/)
+  })
+
+  it('throws when a set does not contain an expected integer', () => {
+    expect(() => {
+      expect(new Set([ 1, 2, 3 ])).toInclude(4)
+    }).toThrow(/to include/)
+  })
+
+  it('throws when a set does not contain an expected object', () => {
+    expect(() => {
+        expect(new Set([ { a: 1 }, { c: 2 } ])).toInclude({ a: 2 })
     }).toThrow(/to include/)
   })
 

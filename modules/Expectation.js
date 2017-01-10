@@ -6,9 +6,11 @@ import {
   isA,
   isFunction,
   isArray,
+  isSet,
   isEqual,
   isObject,
   functionThrows,
+  setContains,
   arrayContains,
   objectContains,
   stringContains
@@ -286,6 +288,8 @@ class Expectation {
 
     if (isArray(this.actual)) {
       contains = arrayContains(this.actual, value, compareValues)
+    } else if (isSet(this.actual)) {
+      contains = setContains(this.actual, value, compareValues)
     } else if (isObject(this.actual)) {
       contains = objectContains(this.actual, value, compareValues)
     } else if (typeof this.actual === 'string') {
@@ -293,7 +297,7 @@ class Expectation {
     } else {
       assert(
         false,
-        'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
+        'The "actual" argument in expect(actual).toInclude() must be an array, set, object, or a string'
       )
     }
 
@@ -320,6 +324,8 @@ class Expectation {
 
     if (isArray(this.actual)) {
       contains = arrayContains(this.actual, value, compareValues)
+    } else if (isSet(this.actual)) {
+      contains = setContains(this.actual, value, compareValues)
     } else if (isObject(this.actual)) {
       contains = objectContains(this.actual, value, compareValues)
     } else if (typeof this.actual === 'string') {
@@ -327,7 +333,7 @@ class Expectation {
     } else {
       assert(
         false,
-        'The "actual" argument in expect(actual).toExclude() must be an array, object, or a string'
+        'The "actual" argument in expect(actual).toExclude() must be an array, set, object, or a string'
       )
     }
 

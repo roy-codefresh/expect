@@ -1,10 +1,10 @@
 import expect from '../index'
 
 describe('toInclude', () => {
-  it('requires the actual value to be an array, set, object, or a string', () => {
+  it('requires the actual value to be an array, object, or a string', () => {
     expect(() => {
       expect(1).toInclude(2)
-    }).toThrow(/must be an array, set, object, or a string/)
+    }).toThrow(/must be an array, object, or a string/)
   })
 
   it('does not throw when an array contains an expected integer', () => {

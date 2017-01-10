@@ -297,7 +297,7 @@ class Expectation {
     } else {
       assert(
         false,
-        'The "actual" argument in expect(actual).toInclude() must be an array, set, object, or a string'
+        'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
       )
     }
 
@@ -333,7 +333,7 @@ class Expectation {
     } else {
       assert(
         false,
-        'The "actual" argument in expect(actual).toExclude() must be an array, set, object, or a string'
+        'The "actual" argument in expect(actual).toExclude() must be an array, object, or a string'
       )
     }
 

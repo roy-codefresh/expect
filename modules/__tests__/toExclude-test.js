@@ -1,10 +1,10 @@
 import expect from '../index'
 
 describe('toExclude', () => {
-  it('requires the actual value to be an array, set, object or string', () => {
+  it('requires the actual value to be an array, object or string', () => {
     expect(() => {
       expect(1).toExclude(2)
-    }).toThrow(/must be an array, set, object, or a string/)
+    }).toThrow(/must be an array, object, or a string/)
   })
 
   it('does not throw when an array does not contain the expected value', () => {

@@ -31,7 +31,7 @@ export const isArray = (object) =>
  * Returns true if the given object is a set.
  */
 export const isSet = (object) =>
-  object instanceof Set
+  Object.prototype.toString.call(object) === '[object Set]'
 
 /**
  * Returns true if the given object is an object.

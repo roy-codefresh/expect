@@ -55,7 +55,7 @@ describe('toExclude', () => {
     }).toNotThrow()
   })
 
-  it('does not throw when an string does not contain the expected value', () => {
+  it('does not throw when a string does not contain the expected value', () => {
     expect(() => {
       expect('hello world').toExclude('goodbye')
     }).toNotThrow()

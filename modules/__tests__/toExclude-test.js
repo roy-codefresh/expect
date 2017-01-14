@@ -19,7 +19,7 @@ describe('toExclude', () => {
     }).toThrow(/to exclude/)
   })
 
-  it('does not throw when an array does not contain the expected value', () => {
+  it('does not throw when a set does not contain the expected value', () => {
     expect(() => {
       expect(new Set([ 1, 2, 3 ])).toExclude(4)
     }).toNotThrow()

@@ -50,7 +50,7 @@ module.exports = (config) => {
   config.set({
     customLaunchers: customLaunchers,
 
-    browsers: [ 'Chrome', 'IE10 - Win8' ],
+    browsers: [ 'Chrome' ],
     frameworks: [ 'mocha' ],
     reporters: [ 'mocha' ],
 

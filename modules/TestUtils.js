@@ -27,11 +27,28 @@ export const isFunction = (object) =>
 export const isArray = (object) =>
   Array.isArray(object)
 
+
+const hasSet = typeof Set === 'function' && Set.prototype
+const setSizeDescriptor = Object.getOwnPropertyDescriptor && hasSet ?
+  Object.getOwnPropertyDescriptor(Set.prototype, 'size') : null
+const setSize = hasSet && setSizeDescriptor && typeof setSizeDescriptor.get === 'function'
+  ? setSizeDescriptor.get : null
+
 /**
  * Returns true if the given object is a set.
  */
-export const isSet = (object) =>
-  Object.prototype.toString.call(object) === '[object Set]'
+export const isSet = (object) => {
+  if (!setSize) {
+    return false
+  }
+  try {
+    setSize.call(object)
+    return true
+  } catch (err) {
+    return false
+  }
+}
+
 
 /**
  * Returns true if the given object is an object.
@@ -99,8 +116,14 @@ export const arrayContains = (array, value, compareValues) =>
  * otherwise. The compareValues function must return false to
  * indicate a non-match.
  */
-export const setContains = (set, value, compareValues) =>
-  arrayContains([ ...set ], value, compareValues)
+export const setContains = (set, value, compareValues) => {
+  for (let item of set) {
+    if (compareValues(value, item)) {
+      return true
+    }
+  }
+  return false
+}
 
 const ownEnumerableKeys = (object) => {
   if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {

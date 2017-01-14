@@ -50,11 +50,12 @@ module.exports = (config) => {
   config.set({
     customLaunchers: customLaunchers,
 
-    browsers: [ 'Chrome' ],
+    browsers: [ 'Chrome', 'IE10 - Win8' ],
     frameworks: [ 'mocha' ],
     reporters: [ 'mocha' ],
 
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'tests.webpack.js'
     ],
 

@@ -55,7 +55,7 @@ module.exports = (config) => {
     reporters: [ 'mocha' ],
 
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
+      'node_modules/es6-shim/es6-shim.js',
       'tests.webpack.js'
     ],
 
